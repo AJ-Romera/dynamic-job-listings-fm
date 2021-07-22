@@ -1,8 +1,20 @@
 import React from 'react';
+import styled from '@emotion/styled';
+
+const Attrib = styled.div`
+	font-size: 0.825rem;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+
+	a {
+		color: hsl(228, 46%, 55%);
+	}
+`;
 
 function Attribution() {
 	return (
-		<div class='attribution'>
+		<Attrib>
 			Challenge by{' '}
 			<a
 				href='https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt'
@@ -13,7 +25,7 @@ function Attribution() {
 			</a>
 			. Coded by{' '}
 			<a href='https://www.linkedin.com/in/aj-romera/'>AJ-Romera</a>.
-		</div>
+		</Attrib>
 	);
 }
 
