@@ -9,9 +9,16 @@ const GreenHeader = styled.header`
 	background-position: center;
 	background-color: var(--desaturated-dark-cyan);
 `;
+const H1 = styled.h1`
+	display: none;
+`;
 
 function Header() {
-	return <GreenHeader></GreenHeader>;
+	return (
+		<GreenHeader>
+			<H1>Job Listings Frontend Mentor Challenge AJ-Romera</H1>
+		</GreenHeader>
+	);
 }
 
 export default Header;

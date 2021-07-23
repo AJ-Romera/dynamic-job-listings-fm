@@ -5,7 +5,8 @@ import JobCard from './JobCard';
 
 const Container = styled.main`
 	width: auto;
-	margin: 0 auto;
+	margin: 3.438rem auto 0 auto;
+	margin-top: 3.438rem;
 	padding: 0 1.438rem;
 `;
 
