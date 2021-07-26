@@ -4,12 +4,23 @@ import styled from '@emotion/styled';
 const Card = styled.div`
 	width: 100%;
 	height: auto;
+	position: relative;
 	margin-bottom: 2.375rem;
-	padding: 2.25rem 1.5rem 1.5rem 1.5rem;
+	padding: 2rem 1.5rem 1.5rem 1.5rem;
 	border-radius: 0.425rem;
 	background-color: #ffffff;
 	-webkit-box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
 	box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
+`;
+
+const FeaturedGreenBorder = styled.span`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0.3rem;
+	height: 100%;
+	background-color: var(--desaturated-dark-cyan);
+	border-radius: 6rem 0 0 6rem;
 `;
 
 const CardContent = styled.div`
@@ -23,14 +34,43 @@ const CardContent = styled.div`
 const Img = styled.img`
 	position: absolute;
 	width: 3rem;
-	margin-top: -3.75rem;
+	margin-top: -3.5rem;
+`;
+
+const CnameAndBadgets = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 0.725rem;
 `;
 
 const H2 = styled.h2`
 	font-size: 0.8rem;
 	color: var(--desaturated-dark-cyan);
 	text-transform: capitalize;
-	margin-bottom: 1rem;
+	margin-bottom: 0rem;
+	margin-right: 1rem;
+`;
+
+const NewJob = styled.span`
+	padding: 0.5rem 0.5rem 0.175rem 0.5rem;
+	margin-right: 0.5rem;
+	border-radius: 1rem;
+	font-size: 0.65rem;
+	color: #ffffff;
+	background-color: var(--desaturated-dark-cyan);
+	text-transform: uppercase;
+	font-weight: 500;
+`;
+
+const FeaturedJob = styled.span`
+	padding: 0.5rem 0.5rem 0.175rem 0.5rem;
+	border-radius: 1rem;
+	font-size: 0.65rem;
+	color: #ffffff;
+	background-color: var(--very-dark-grayish-cyan);
+	text-transform: uppercase;
+	font-weight: 500;
 `;
 
 const H3 = styled.h3`
@@ -108,10 +148,19 @@ function JobCard({ data }) {
 				let keywords = [role, level, ...languages, ...tools];
 				return (
 					<Card key={id}>
+						{featured && (
+							<FeaturedGreenBorder></FeaturedGreenBorder>
+						)}
 						<div>
 							<Img src={logo} alt='Company´s logo' />
 							<CardContent>
-								<H2>{company}</H2>
+								<CnameAndBadgets>
+									<H2>{company}</H2>
+									{job.new && <NewJob>New!</NewJob>}
+									{featured && (
+										<FeaturedJob>Featured</FeaturedJob>
+									)}
+								</CnameAndBadgets>
 								<H3>{position}</H3>
 								<Details>
 									<DetailsItem>{postedAt}</DetailsItem>
