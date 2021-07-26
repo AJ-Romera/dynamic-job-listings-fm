@@ -102,7 +102,6 @@ function JobCard() {
 					</Details>
 				</CardContent>
 			</div>
-			{/* <hr /> */}
 			<Tags>
 				<Tag>Frontend</Tag>
 				<Tag>Junior</Tag>
