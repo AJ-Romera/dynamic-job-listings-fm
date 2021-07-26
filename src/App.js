@@ -1,9 +1,10 @@
+import data from './data.json';
+import './index.css';
 import styled from '@emotion/styled';
 import JobFilter from './components/JobFilter';
 import JobCard from './components/JobCard';
 import Attribution from './components/Attribution';
 import Header from './components/Header';
-import './index.css';
 
 const Container = styled.main`
 	width: auto;
@@ -18,8 +19,7 @@ function App() {
 			<Header />
 			<Container>
 				<JobFilter />
-				{/* Here is where you map the cards later */}
-				<JobCard />
+				<JobCard data={data} />
 			</Container>
 			<Attribution />
 		</div>

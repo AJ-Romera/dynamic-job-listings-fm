@@ -87,29 +87,36 @@ const Tag = styled.span`
 	font-weight: 700;
 `;
 
-function JobCard() {
+function JobCard({ data }) {
+	console.log(data);
 	return (
-		<Card>
-			<div>
-				<Img src='images/account.svg' alt='Company´s logo' />
-				<CardContent>
-					<H2>Account</H2>
-					<H3>Junior Frontend Developer</H3>
-					<Details>
-						<DetailsItem>2d ago</DetailsItem>
-						<DetailsItem>Part Time</DetailsItem>
-						<DetailsItem>USA only</DetailsItem>
-					</Details>
-				</CardContent>
-			</div>
-			<Tags>
-				<Tag>Frontend</Tag>
-				<Tag>Junior</Tag>
-				<Tag>React</Tag>
-				<Tag>Sass</Tag>
-				<Tag>JavaScript</Tag>
-			</Tags>
-		</Card>
+		<div>
+			{data.map((job) => {
+				return (
+					<Card key={job.id}>
+						<div>
+							<Img src={job.logo} alt='Company´s logo' />
+							<CardContent>
+								<H2>{job.company}</H2>
+								<H3>Junior Frontend Developer</H3>
+								<Details>
+									<DetailsItem>2d ago</DetailsItem>
+									<DetailsItem>Part Time</DetailsItem>
+									<DetailsItem>USA only</DetailsItem>
+								</Details>
+							</CardContent>
+						</div>
+						<Tags>
+							<Tag>Frontend</Tag>
+							<Tag>Junior</Tag>
+							<Tag>React</Tag>
+							<Tag>Sass</Tag>
+							<Tag>JavaScript</Tag>
+						</Tags>
+					</Card>
+				);
+			})}
+		</div>
 	);
 }
 
