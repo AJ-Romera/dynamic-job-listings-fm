@@ -77,6 +77,12 @@ const H3 = styled.h3`
 	font-size: 0.938rem;
 	color: var(--very-dark-grayish-cyan);
 	text-transform: capitalize;
+
+	&:hover {
+		cursor: pointer;
+		color: var(--desaturated-dark-cyan);
+		transition: all 0.2s ease-in;
+	}
 `;
 
 const Details = styled.ul`
@@ -125,6 +131,13 @@ const Tag = styled.span`
 	color: var(--desaturated-dark-cyan);
 	text-transform: capitalize;
 	font-weight: 700;
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--desaturated-dark-cyan);
+		color: white;
+		transition: all 0.3s ease-in;
+	}
 `;
 
 function JobCard({ data }) {
