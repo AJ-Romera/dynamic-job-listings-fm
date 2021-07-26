@@ -88,30 +88,42 @@ const Tag = styled.span`
 `;
 
 function JobCard({ data }) {
-	console.log(data);
 	return (
 		<div>
 			{data.map((job) => {
+				const {
+					company,
+					contract,
+					featured,
+					id,
+					languages,
+					level,
+					location,
+					logo,
+					position,
+					postedAt,
+					role,
+					tools,
+				} = job;
+				let keywords = [role, level, ...languages, ...tools];
 				return (
-					<Card key={job.id}>
+					<Card key={id}>
 						<div>
-							<Img src={job.logo} alt='Company´s logo' />
+							<Img src={logo} alt='Company´s logo' />
 							<CardContent>
-								<H2>{job.company}</H2>
-								<H3>Junior Frontend Developer</H3>
+								<H2>{company}</H2>
+								<H3>{position}</H3>
 								<Details>
-									<DetailsItem>2d ago</DetailsItem>
-									<DetailsItem>Part Time</DetailsItem>
-									<DetailsItem>USA only</DetailsItem>
+									<DetailsItem>{postedAt}</DetailsItem>
+									<DetailsItem>{contract}</DetailsItem>
+									<DetailsItem>{location}</DetailsItem>
 								</Details>
 							</CardContent>
 						</div>
 						<Tags>
-							<Tag>Frontend</Tag>
-							<Tag>Junior</Tag>
-							<Tag>React</Tag>
-							<Tag>Sass</Tag>
-							<Tag>JavaScript</Tag>
+							{keywords.map((keyword, id) => {
+								return <Tag key={id}>{keyword}</Tag>;
+							})}
 						</Tags>
 					</Card>
 				);
