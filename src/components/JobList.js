@@ -127,7 +127,7 @@ const Tag = styled.span`
 	margin: 1rem 1rem 0 0;
 	padding: 0.6rem 0.5rem 0.4rem 0.5rem;
 	border-radius: 0.3rem;
-	font-size: 0.8rem;
+	font-size: 0.79rem;
 	color: var(--desaturated-dark-cyan);
 	text-transform: capitalize;
 	font-weight: 700;
@@ -140,58 +140,52 @@ const Tag = styled.span`
 	}
 `;
 
-function JobCard({ data }) {
+function JobList({ job, handleTagClick }) {
+	const {
+		company,
+		contract,
+		featured,
+		id,
+		languages,
+		level,
+		location,
+		logo,
+		position,
+		postedAt,
+		role,
+		tools,
+	} = job;
+	let keywords = [role, level, ...languages, ...tools];
 	return (
 		<div>
-			{data.map((job) => {
-				const {
-					company,
-					contract,
-					featured,
-					id,
-					languages,
-					level,
-					location,
-					logo,
-					position,
-					postedAt,
-					role,
-					tools,
-				} = job;
-				let keywords = [role, level, ...languages, ...tools];
-				return (
-					<Card key={id}>
-						{featured && (
-							<FeaturedGreenBorder></FeaturedGreenBorder>
-						)}
-						<div>
-							<Img src={logo} alt='Company´s logo' />
-							<CardContent>
-								<CnameAndBadgets>
-									<H2>{company}</H2>
-									{job.new && <NewJob>New!</NewJob>}
-									{featured && (
-										<FeaturedJob>Featured</FeaturedJob>
-									)}
-								</CnameAndBadgets>
-								<H3>{position}</H3>
-								<Details>
-									<DetailsItem>{postedAt}</DetailsItem>
-									<DetailsItem>{contract}</DetailsItem>
-									<DetailsItem>{location}</DetailsItem>
-								</Details>
-							</CardContent>
-						</div>
-						<Tags>
-							{keywords.map((keyword, id) => {
-								return <Tag key={id}>{keyword}</Tag>;
-							})}
-						</Tags>
-					</Card>
-				);
-			})}
+			<Card key={id}>
+				{featured && <FeaturedGreenBorder></FeaturedGreenBorder>}
+				<div>
+					<Img src={logo} alt='Company´s logo' />
+					<CardContent>
+						<CnameAndBadgets>
+							<H2>{company}</H2>
+							{job.new && <NewJob>New!</NewJob>}
+							{featured && <FeaturedJob>Featured</FeaturedJob>}
+						</CnameAndBadgets>
+						<H3>{position}</H3>
+						<Details>
+							<DetailsItem>{postedAt}</DetailsItem>
+							<DetailsItem>{contract}</DetailsItem>
+							<DetailsItem>{location}</DetailsItem>
+						</Details>
+					</CardContent>
+				</div>
+				<Tags>
+					{keywords.map((key, id) => (
+						<Tag onClick={() => handleTagClick(key)} key={id}>
+							{key}
+						</Tag>
+					))}
+				</Tags>
+			</Card>
 		</div>
 	);
 }
 
-export default JobCard;
+export default JobList;

@@ -9,14 +9,18 @@ const GreenHeader = styled.header`
 	background-position: center;
 	background-color: var(--desaturated-dark-cyan);
 `;
+
 const H1 = styled.h1`
 	display: none;
 `;
 
-function Header() {
+function Header({ keywords }) {
 	return (
 		<GreenHeader>
 			<H1>Job Listings Frontend Mentor Challenge AJ-Romera</H1>
+			{/* {keywords.map((key, id) => {
+				return <button key={id}>{key}</button>;
+			})} */}
 		</GreenHeader>
 	);
 }
