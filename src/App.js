@@ -114,6 +114,10 @@ function App() {
 		setFilter(filter.filter((f) => f !== passedFilter));
 	};
 
+	const clearFilters = () => {
+		setFilter([]);
+	};
+
 	const filteredJobs = jobs.filter(filterFunc);
 
 	return (
@@ -133,7 +137,9 @@ function App() {
 								</Keyword>
 							))}
 						</TableLeft>
-						<TableRight>Clear</TableRight>
+						<TableRight onClick={() => clearFilters()}>
+							Clear
+						</TableRight>
 					</FilterTable>
 				)}
 				{jobs.length === 0 ? (
@@ -147,8 +153,8 @@ function App() {
 						/>
 					))
 				)}
+				<Attribution />
 			</Container>
-			<Attribution />
 		</div>
 	);
 }
