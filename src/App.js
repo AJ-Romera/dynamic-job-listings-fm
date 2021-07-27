@@ -46,6 +46,7 @@ const Keyword = styled.span`
 	color: var(--desaturated-dark-cyan);
 	text-transform: capitalize;
 	font-weight: 700;
+	cursor: default;
 
 	&:after {
 		position: absolute;
@@ -59,12 +60,12 @@ const Keyword = styled.span`
 		background-image: url(images/icon-remove.svg);
 		background-repeat: no-repeat;
 		background-position: center;
-		/* background-size: auto; */
 	}
 
 	&:hover:after {
 		cursor: pointer;
 		background-color: var(--very-dark-grayish-cyan);
+		transition: all 0.3s ease-in;
 	}
 `;
 
@@ -109,21 +110,32 @@ function App() {
 		setFilter([...filter, keyword]);
 	};
 
+	const handleFilterClick = (passedFilter) => {
+		setFilter(filter.filter((f) => f !== passedFilter));
+	};
+
 	const filteredJobs = jobs.filter(filterFunc);
 
 	return (
 		<div className='App'>
 			<Header />
 			<Container>
-				<FilterTable>
-					<TableLeft>
-						{filter.length > 0 &&
-							filter.map((filteredKeyword) => (
-								<Keyword>{filteredKeyword}</Keyword>
+				{filter.length > 0 && (
+					<FilterTable>
+						<TableLeft>
+							{filter.map((filteredKeyword) => (
+								<Keyword
+									onClick={() =>
+										handleFilterClick(filteredKeyword)
+									}
+								>
+									{filteredKeyword}
+								</Keyword>
 							))}
-					</TableLeft>
-					<TableRight>Clear</TableRight>
-				</FilterTable>
+						</TableLeft>
+						<TableRight>Clear</TableRight>
+					</FilterTable>
+				)}
 				{jobs.length === 0 ? (
 					<p>No jobs found...</p>
 				) : (
