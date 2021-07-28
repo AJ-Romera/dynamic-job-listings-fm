@@ -17,16 +17,8 @@ const GreenHeader = styled.header`
 	}
 `;
 
-const H1 = styled.h1`
-	display: none;
-`;
-
 function Header({ keywords }) {
-	return (
-		<GreenHeader>
-			<H1>Job Listings Frontend Mentor Challenge AJ-Romera</H1>
-		</GreenHeader>
-	);
+	return <GreenHeader></GreenHeader>;
 }
 
 export default Header;
