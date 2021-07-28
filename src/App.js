@@ -137,9 +137,6 @@ function App() {
 		});
 	});
 
-	console.log(filter);
-	console.log(filteredJobs);
-
 	return (
 		<div className='App'>
 			<Header />
