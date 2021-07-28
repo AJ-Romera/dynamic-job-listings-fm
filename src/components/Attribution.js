@@ -5,6 +5,7 @@ const Attrib = styled.div`
 	font-size: 0.825rem;
 	text-align: center;
 	margin: 0;
+	margin-bottom: 0.4rem;
 	padding: 0;
 
 	a {

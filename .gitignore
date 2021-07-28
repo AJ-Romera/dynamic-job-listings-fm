@@ -16,3 +16,6 @@
 
 # No node modules on github
 /node_modules
+
+# Does not upload the production build to github
+/build
