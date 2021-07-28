@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+const breakpoints = [1024, 1440];
+const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+
 const Card = styled.div`
 	width: 100%;
 	height: auto;
@@ -11,6 +14,14 @@ const Card = styled.div`
 	background-color: #ffffff;
 	-webkit-box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
 	box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
+
+	${mq[0]} {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem 2.438rem;
+	}
 `;
 
 const FeaturedGreenBorder = styled.span`
@@ -23,18 +34,38 @@ const FeaturedGreenBorder = styled.span`
 	border-radius: 6rem 0 0 6rem;
 `;
 
-const CardContent = styled.div`
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	padding-bottom: 1.2rem;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+const ImgAndCardContent = styled.div`
+	width: auto;
+	${mq[0]} {
+		display: flex;
+		flex-direction: row;
+	}
 `;
 
 const Img = styled.img`
 	position: absolute;
 	width: 3rem;
 	margin-top: -3.5rem;
+
+	${mq[0]} {
+		position: relative;
+		width: auto;
+		margin-top: 0;
+		margin-right: 1.625rem;
+	}
+`;
+
+const CardContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding-bottom: 1.2rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+	${mq[0]} {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
 `;
 
 const CnameAndBadgets = styled.div`
@@ -42,14 +73,21 @@ const CnameAndBadgets = styled.div`
 	flex-direction: row;
 	align-items: center;
 	margin-bottom: 0.725rem;
+
+	${mq[0]} {
+		margin-bottom: 0.688rem;
+	}
 `;
 
 const H2 = styled.h2`
 	font-size: 0.8rem;
 	color: var(--desaturated-dark-cyan);
 	text-transform: capitalize;
-	margin-bottom: 0rem;
-	margin-right: 1rem;
+	margin: 0 1rem 0 0;
+
+	${mq[0]} {
+		font-size: 0.9rem;
+	}
 `;
 
 const NewJob = styled.span`
@@ -64,7 +102,7 @@ const NewJob = styled.span`
 `;
 
 const FeaturedJob = styled.span`
-	padding: 0.5rem 0.5rem 0.175rem 0.5rem;
+	padding: 0.5rem 0.6rem 0.175rem 0.6rem;
 	border-radius: 1rem;
 	font-size: 0.65rem;
 	color: #ffffff;
@@ -82,6 +120,11 @@ const H3 = styled.h3`
 		cursor: pointer;
 		color: var(--desaturated-dark-cyan);
 		transition: all 0.2s ease-in;
+	}
+
+	${mq[0]} {
+		margin-bottom: 0.75rem;
+		font-size: 1.1244rem;
 	}
 `;
 
@@ -109,17 +152,28 @@ const DetailsItem = styled.li`
 	&:last-child::after {
 		display: none;
 	}
+
+	${mq[0]} {
+		font-size: 0.925rem;
+
+		&::after {
+			margin: -0.1rem 0.7rem;
+		}
+	}
 `;
 
 const Tags = styled.div`
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
-	flex: 0 1 100%;
 	flex-wrap: wrap;
-	width: 100%;
-	height: auto;
-	flex-wrap: wrap;
+
+	${mq[0]} {
+		width: 40%;
+		margin-top: -1rem;
+	}
+	${mq[1]} {
+		width: auto;
+	}
 `;
 
 const Tag = styled.span`
@@ -137,6 +191,10 @@ const Tag = styled.span`
 		background-color: var(--desaturated-dark-cyan);
 		color: white;
 		transition: all 0.3s ease-in;
+	}
+
+	${mq[0]} {
+		padding: 0.65rem 0.5rem 0.45rem 0.5rem;
 	}
 `;
 
@@ -160,7 +218,7 @@ function JobList({ job, addTag }) {
 		<div>
 			<Card key={id}>
 				{featured && <FeaturedGreenBorder></FeaturedGreenBorder>}
-				<div>
+				<ImgAndCardContent>
 					<Img src={logo} alt='Company´s logo' />
 					<CardContent>
 						<CnameAndBadgets>
@@ -175,7 +233,7 @@ function JobList({ job, addTag }) {
 							<DetailsItem>{location}</DetailsItem>
 						</Details>
 					</CardContent>
-				</div>
+				</ImgAndCardContent>
 				<Tags>
 					{keywords.map((key, id) => (
 						<Tag onClick={() => addTag(key)} key={id}>

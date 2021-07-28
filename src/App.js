@@ -6,10 +6,20 @@ import JobList from './components/JobList';
 import Attribution from './components/Attribution';
 import Header from './components/Header';
 
+const breakpoints = [1024, 1440];
+const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+
 const Container = styled.main`
 	width: auto;
 	margin: 3.438rem auto 0 auto;
 	padding: 0 1.438rem;
+
+	${mq[0]} {
+		padding: 0 5rem;
+	}
+	${mq[1]} {
+		padding: 0 10.25rem;
+	}
 `;
 
 const FilterTable = styled.div`
@@ -24,6 +34,10 @@ const FilterTable = styled.div`
 	background-color: #ffffff;
 	-webkit-box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
 	box-shadow: 3px 12px 26px -22px var(--desaturated-dark-cyan);
+
+	${mq[0]} {
+		padding: 0.813rem 2.5rem;
+	}
 `;
 
 const TableLeft = styled.div`
@@ -81,6 +95,10 @@ const TableRight = styled.div`
 	&:hover {
 		cursor: pointer;
 		text-decoration: underline;
+	}
+
+	${mq[0]} {
+		justify-content: flex-end;
 	}
 `;
 
