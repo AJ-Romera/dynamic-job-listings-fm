@@ -90,19 +90,9 @@ function App() {
 
 	useEffect(() => {
 		setJobs(data);
-	}, []);
+	}, [filter]);
 
-	const filterFunc = ({ role, level, languages, tools }) => {
-		if (filter.length === 0) {
-			return true;
-		}
-
-		const keywords = [role, level, ...languages, ...tools];
-
-		return keywords.some((keyword) => filter.includes(keyword));
-	};
-
-	const handleTagClick = (keyword) => {
+	const addTag = (keyword) => {
 		if (filter.includes(keyword)) {
 			return;
 		}
@@ -110,7 +100,7 @@ function App() {
 		setFilter([...filter, keyword]);
 	};
 
-	const handleFilterClick = (passedFilter) => {
+	const removeFilter = (passedFilter) => {
 		setFilter(filter.filter((f) => f !== passedFilter));
 	};
 
@@ -118,7 +108,19 @@ function App() {
 		setFilter([]);
 	};
 
-	const filteredJobs = jobs.filter(filterFunc);
+	const filteredJobs = jobs.filter((job) => {
+		return filter.every((keyword) => {
+			return (
+				job.role === keyword ||
+				job.level === keyword ||
+				job.languages.includes(keyword) ||
+				job.tools.includes(keyword)
+			);
+		});
+	});
+
+	console.log(filter);
+	console.log(filteredJobs);
 
 	return (
 		<div className='App'>
@@ -130,7 +132,7 @@ function App() {
 							{filter.map((filteredKeyword) => (
 								<Keyword
 									onClick={() =>
-										handleFilterClick(filteredKeyword)
+										removeFilter(filteredKeyword)
 									}
 								>
 									{filteredKeyword}
@@ -146,11 +148,7 @@ function App() {
 					<p>No jobs found...</p>
 				) : (
 					filteredJobs.map((job) => (
-						<JobList
-							job={job}
-							key={job.id}
-							handleTagClick={handleTagClick}
-						/>
+						<JobList job={job} key={job.id} addTag={addTag} />
 					))
 				)}
 				<Attribution />

@@ -140,7 +140,7 @@ const Tag = styled.span`
 	}
 `;
 
-function JobList({ job, handleTagClick }) {
+function JobList({ job, addTag }) {
 	const {
 		company,
 		contract,
@@ -178,7 +178,7 @@ function JobList({ job, handleTagClick }) {
 				</div>
 				<Tags>
 					{keywords.map((key, id) => (
-						<Tag onClick={() => handleTagClick(key)} key={id}>
+						<Tag onClick={() => addTag(key)} key={id}>
 							{key}
 						</Tag>
 					))}
