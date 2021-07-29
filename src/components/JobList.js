@@ -170,6 +170,7 @@ const Tags = styled.div`
 	${mq[0]} {
 		width: 40%;
 		margin-top: -1rem;
+		justify-content: flex-end;
 	}
 	${mq[1]} {
 		width: auto;
