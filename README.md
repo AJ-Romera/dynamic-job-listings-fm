@@ -18,10 +18,10 @@ It consists on building out a dynamic job listing with tag/keyword filter and ge
 
 ### Screenshots
 
-![](./screenshots/desktop.png)
-![](./screenshots/desktop-filters&hovers.png)
-![](./screenshots/mobile.png)
-![](./screenshots/mobile-filters&hovers.png)
+![](./public/screenshots/desktop.png)
+![](./public/screenshots/desktop-filters&hovers.png)
+![](./public/screenshots/mobile.png)
+![](./public/screenshots/mobile-filters&hovers.png)
 
 ### Demo
 
